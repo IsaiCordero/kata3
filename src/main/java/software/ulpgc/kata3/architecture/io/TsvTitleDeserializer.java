@@ -1,4 +1,7 @@
-package software.ulpgc.kata3.architecture;
+package software.ulpgc.kata3.architecture.io;
+
+
+import software.ulpgc.kata3.apps.windows.Title;
 
 public class TsvTitleDeserializer implements TitleDeserializer {
 
@@ -8,7 +11,18 @@ public class TsvTitleDeserializer implements TitleDeserializer {
     }
 
     private Title deserialize(String[] split) {
-        return new Title(split[0],split[1],split[2],split[3],split[4], split[5],split[6], split[7],split[8]);
+        return new Title(split[0],split[1],split[2],split[3],toBoolean(split[4]), toInt(split[5]),toInt(split[6]), toInt(split[7]),split[8]);
+    }
+
+    private boolean toBoolean(String line) {
+        if (line.equals("1")) return true;
+        return false;
+    }
+
+    private int toInt(String line) {
+
+        if (line != null && !line.equals("\\N")) return Integer.parseInt(line);
+        return 0;
     }
 
 }

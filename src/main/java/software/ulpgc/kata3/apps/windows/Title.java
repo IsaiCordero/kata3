@@ -1,17 +1,17 @@
-package software.ulpgc.kata3.architecture;
+package software.ulpgc.kata3.apps.windows;
 
 public class Title {
     private final String id;
     private final String Type;
     private final String primaryTitle;
     private final String originalTitle;
-    private final String isAdult;
-    private final String startYear;
-    private final String endYear;
-    private final String runtimeMinutes;
+    private final boolean isAdult;
+    private final int startYear;
+    private final int endYear;
+    private final int runtimeMinutes;
     private final String genres;
 
-    public Title(String id, String type, String primaryTitle, String originalTitle, String isAdult, String startYear, String endYear, String runtimeMinutes, String genres) {
+    public Title(String id, String type, String primaryTitle, String originalTitle, boolean isAdult, int startYear, int endYear, int runtimeMinutes, String genres) {
         this.id = id;
         Type = type;
         this.primaryTitle = primaryTitle;
@@ -39,19 +39,19 @@ public class Title {
         return originalTitle;
     }
 
-    public String getIsAdult() {
+    public boolean isAdult() {
         return isAdult;
     }
 
-    public String getStartYear() {
+    public int getStartYear() {
         return startYear;
     }
 
-    public String getEndYear() {
+    public int getEndYear() {
         return endYear;
     }
 
-    public String getRuntimeMinutes() {
+    public int getRuntimeMinutes() {
         return runtimeMinutes;
     }
 
@@ -66,10 +66,10 @@ public class Title {
                 ", Type='" + Type + '\'' +
                 ", primaryTitle='" + primaryTitle + '\'' +
                 ", originalTitle='" + originalTitle + '\'' +
-                ", isAdult='" + isAdult + '\'' +
-                ", startYear='" + startYear + '\'' +
-                ", endYear='" + endYear + '\'' +
-                ", runtimeMinutes='" + runtimeMinutes + '\'' +
+                ", isAdult=" + isAdult +
+                ", startYear=" + startYear +
+                ", endYear=" + endYear +
+                ", runtimeMinutes=" + runtimeMinutes +
                 ", genres='" + genres + '\'' +
                 '}';
     }

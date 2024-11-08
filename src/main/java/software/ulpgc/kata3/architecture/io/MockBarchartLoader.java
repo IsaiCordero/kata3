@@ -1,30 +1,61 @@
-package software.ulpgc.kata3.architecture;
+package software.ulpgc.kata3.architecture.io;
 
-import software.ulpgc.kata3.architecture.Barchart;
+import software.ulpgc.kata3.architecture.model.Barchart;
+import software.ulpgc.kata3.apps.windows.Title;
+
+import java.io.IOException;
+import java.io.File;
+import java.util.List;
 
 public class MockBarchartLoader implements BarchartLoader {
+
+
+
     @Override
-    public Barchart load(int id) {
+    public Barchart load(int id) throws IOException {
+        TitleDeserializer deserializer = new TsvTitleDeserializer();
+        TitleReader file = new TsvFileTitleReader(new File("title.basics.tsv"), deserializer);
+        List<Title> titles = file.load();
         return switch (id) {
-            case 0 -> barchart0();
-            case 1 -> barchart1();
+            case 0 -> barchart0(titles);
+            case 1 -> barchart1(titles);
             default -> null;
         };
+
     }
 
-    private Barchart barchart0() {
-        Barchart barchart = new Barchart("title 1", "x", "y");
-        barchart.put("X", 1);
-        barchart.put("Y", 60);
-        barchart.put("Z", 55);
+    private Barchart barchart0(List<Title> titles){
+        Barchart barchart = new Barchart("Year the movies came out", "Years", "Movies");
+        int count = 0;
+        int count2 = 0;
+        int count3 = 0;
+        for (Title title : titles) {
+            int year = title.getStartYear();
+
+            if (year >= 1890 && year < 1900) count++;
+            barchart.put("1890-1900", count);
+
+            if (year >= 1900 && year < 1910) count2++;
+            barchart.put("1900-1910", count2);
+
+            if (year >= 1910 && year < 1920) count3++;
+            barchart.put("1910-1920", count3);
+
+        }
         return barchart;
     }
 
-    private Barchart barchart1() {
-        Barchart barchart = new Barchart("title 2", "x", "y");
-        barchart.put("A", 18);
-        barchart.put("B", 14);
-        barchart.put("C", 12);
+    private Barchart barchart1(List<Title> titles) {
+        Barchart barchart = new Barchart("Type of the movies", "Type", "Amount");
+        int typeShort = 0;
+        int typeMovie = 0;
+        for (Title title : titles) {
+            String Type = title.getType();
+            if(Type.equals("short")) typeShort++;
+            barchart.put("shorts", typeShort);
+            if(Type.equals("movie")) typeMovie++;
+            barchart.put("movies", typeMovie);
+        }
         return barchart;
     }
 }

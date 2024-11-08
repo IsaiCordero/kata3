@@ -1,6 +1,8 @@
-package software.ulpgc.kata3.architecture;
-import software.ulpgc.kata3.architecture.BarchartLoader;
-import software.ulpgc.kata3.architecture.BarchartDisplay;
+package software.ulpgc.kata3.architecture.control;
+import software.ulpgc.kata3.architecture.io.BarchartLoader;
+import software.ulpgc.kata3.architecture.view.BarchartDisplay;
+
+import java.io.IOException;
 
 public class ToggleStatisticCommand implements Command {
     private final BarchartDisplay display;
@@ -13,7 +15,7 @@ public class ToggleStatisticCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         display.show(loader.load(i++ % 2));
     }
 }
