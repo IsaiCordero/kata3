@@ -17,6 +17,7 @@ public class Barchart {
         this.count = new HashMap<>();
     }
 
+    
     public int get(String category) {
         return count.get(category);
     }

@@ -15,7 +15,7 @@ public class MockBarchartLoader implements BarchartLoader {
     public Barchart load(int id) throws IOException {
         TitleDeserializer deserializer = new TsvTitleDeserializer();
         TitleReader file = new TsvFileTitleReader(new File("title.basics.tsv"), deserializer);
-        List<Title> titles = file.load();
+        List<Title> titles = file.read();
         return switch (id) {
             case 0 -> barchart0(titles);
             case 1 -> barchart1(titles);

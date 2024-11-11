@@ -16,7 +16,7 @@ public class TsvFileTitleReader implements TitleReader {
     }
 
     @Override
-    public List<Title> load() {
+    public List<Title> read() {
         try {
             return load(new FileReader(file));
         } catch (IOException e) {
