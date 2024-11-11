@@ -18,17 +18,17 @@ public class TsvFileTitleReader implements TitleReader {
     @Override
     public List<Title> read() {
         try {
-            return load(new FileReader(file));
+            return read(new FileReader(file));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private List<Title> load(FileReader fileReader) throws IOException {
-        return load(new BufferedReader(fileReader));
+    private List<Title> read(FileReader fileReader) throws IOException {
+        return read(new BufferedReader(fileReader));
     }
 
-    private List<Title> load(BufferedReader reader) throws IOException {
+    private List<Title> read(BufferedReader reader) throws IOException {
         reader.readLine();
         List<Title> titles = new ArrayList<>();
         String line;
