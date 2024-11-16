@@ -1,6 +1,8 @@
 package software.ulpgc.kata3.apps.windows;
-import software.ulpgc.kata3.architecture.view.BarchartDisplay;
+
 import software.ulpgc.kata3.architecture.control.Command;
+import software.ulpgc.kata3.architecture.control.ToggleStatisticCommand;
+import software.ulpgc.kata3.architecture.view.BarchartDisplay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,21 +14,21 @@ import java.util.Map;
 
 public class MainFrame extends JFrame {
     private final Map<String, Command> commands;
-    private final JFreeBarchartDisplay barchartDisplay;
-
-    public MainFrame() throws HeadlessException {
+    private final JFreeBarchartDisplay display;
+    
+    public MainFrame() {
         this.setTitle("Kata 3");
         this.setSize(800,600);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.NORTH, toolbar());
-        this.add(barchartDisplay = statisticPanel());
+        this.add(display = statisticPanel());
         this.commands = new HashMap<>();
     }
 
-    public void put(String name, Command command) {
-        commands.put(name, command);
+    private static JFreeBarchartDisplay statisticPanel() {
+        return new JFreeBarchartDisplay();
     }
 
     private Component toolbar() {
@@ -35,10 +37,8 @@ public class MainFrame extends JFrame {
         return panel;
     }
 
-
     private JButton toggle() {
-
-        JButton button = new JButton("Change");
+        JButton button = new JButton("Toggle");
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,14 +52,11 @@ public class MainFrame extends JFrame {
         return button;
     }
 
-    private JFreeBarchartDisplay statisticPanel() {
-        return new JFreeBarchartDisplay();
+    public void put(String toggle, Command command) {
+        commands.put(toggle, command);
     }
-
 
     public BarchartDisplay barchartDisplay() {
-        return barchartDisplay;
+        return display;
     }
-
 }
-

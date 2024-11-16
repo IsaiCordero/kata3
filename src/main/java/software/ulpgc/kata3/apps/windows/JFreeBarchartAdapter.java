@@ -1,6 +1,5 @@
 package software.ulpgc.kata3.apps.windows;
 
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.CategoryDataset;
@@ -12,13 +11,14 @@ public class JFreeBarchartAdapter {
         return ChartFactory.createBarChart(
                 barchart.title(),
                 barchart.xAxis(),
-                barchart.yAxys(),
-                datasetOf(barchart));
+                barchart.yAxis(),
+                datasetOf(barchart)
+        );
     }
 
     private static CategoryDataset datasetOf(Barchart barchart) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (String category : barchart.keySet())
+        for(String category : barchart.keySet())
             dataset.addValue(barchart.get(category), "", category);
         return dataset;
     }

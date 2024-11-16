@@ -1,4 +1,5 @@
 package software.ulpgc.kata3.architecture.control;
+
 import software.ulpgc.kata3.architecture.io.BarchartLoader;
 import software.ulpgc.kata3.architecture.view.BarchartDisplay;
 
@@ -9,9 +10,9 @@ public class ToggleStatisticCommand implements Command {
     private final BarchartLoader loader;
     private int i = 0;
 
-    public ToggleStatisticCommand(BarchartLoader loader, BarchartDisplay display) {
-        this.loader = loader;
+    public ToggleStatisticCommand(BarchartDisplay display, BarchartLoader loader) {
         this.display = display;
+        this.loader = loader;
     }
 
     @Override
@@ -19,4 +20,3 @@ public class ToggleStatisticCommand implements Command {
         display.show(loader.load(i++ % 2));
     }
 }
-

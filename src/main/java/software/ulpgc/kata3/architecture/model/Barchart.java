@@ -17,17 +17,8 @@ public class Barchart {
         this.count = new HashMap<>();
     }
 
-    
-    public int get(String category) {
-        return count.get(category);
-    }
-
     public void put(String category, int value) {
         count.put(category, value);
-    }
-
-    public Set<String> keySet() {
-        return count.keySet();
     }
 
     public String title() {
@@ -38,7 +29,15 @@ public class Barchart {
         return xAxis;
     }
 
-    public String yAxys() {
+    public String yAxis() {
         return yAxis;
+    }
+
+    public Set<String> keySet() {
+        return count.keySet();
+    }
+
+    public int get(String category) {
+        return count.get(category);
     }
 }
